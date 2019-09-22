@@ -61,11 +61,11 @@ def handle(msg):
             output=os.popen("df -h && free -m && netstat -tunlp").read()
             bot.sendMessage(chat_id, output)
 
-
       if command == '/sh':
-            cmd = str(args[1])
-            output=os.popen(cmd).read()
+            cmd = " ".join(args[1:])
+            output=os.popen('bash -c "'+cmd+'"').read()
             bot.sendMessage(chat_id, output)
+
 
 bot = telepot.Bot('TG-BOT-TOKEN')
 bot.message_loop(handle)
